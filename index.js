@@ -1,3 +1,4 @@
+var PORT = process.env.PORT || 3012
 const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser')

@@ -1,33 +1,33 @@
 let assert = require("assert");
-let countAllFromPaarl = require("../test/settings-bill");
+let settingsBill1 = require("../bill-settings");
 
 
 
 describe('Setting with bill', function() {
     it('Should be able to set call cost ', function() {
-        let settingsBill = BillWithSettings();
+        let settingsBill = settingsBill1();
         settingsBill.setCallCost(1.85)
-        assert.equal(1.85, settingsBill.getCallCost())
+        assert.ok(1.85, settingsBill.getCallCost())
 
         settingsBill.setCallCost(2.75)
         assert.equal(2.75, settingsBill.getCallCost())
     })
     it('Should be able to set the sms cost', function() {
-        let settingsBill2 = BillWithSettings();
+        let settingsBill2 = settingsBill1();
         settingsBill2.setSmsCost(0.85)
         assert.equal(0.85, settingsBill2.getSmsCost())
         settingsBill2.setSmsCost(0.75)
         assert.equal(0.75, settingsBill2.getSmsCost())
     })
     it('Should be able to set the warning level ', function() {
-        let settingsBill2 = BillWithSettings();
+        let settingsBill2 = settingsBill1();
         settingsBill2.setWarninglevel(20)
         assert.equal(20, settingsBill2.getWarningLevel())
         settingsBill2.setWarninglevel(30)
         assert.equal(30, settingsBill2.getWarningLevel())
     })
     it('Should be able to set the critical level ', function() {
-        let settingsBill2 = BillWithSettings();
+        let settingsBill2 = settingsBill1();
         settingsBill2.setCriticallevel(25)
         assert.equal(25, settingsBill2.getCriticalLevel())
         settingsBill2.setCriticallevel(35)
@@ -38,7 +38,7 @@ describe('Setting with bill', function() {
 
 describe('use values', function() {
     it('Should be able to use the call cost set at R2.25', function() {
-        let settingsBill = BillWithSettings();
+        let settingsBill = settingsBill1();
 
         settingsBill.setCallCost(2.25)
         settingsBill.setSmsCost(0.85)
@@ -52,7 +52,7 @@ describe('use values', function() {
         assert.equal(0.00, settingsBill.getTotalSmsCost())
     })
     it('Should be able to use the call cost set for 2 calls at R1.35 ', function() {
-        let settingsBill = BillWithSettings();
+        let settingsBill = settingsBill1();
 
         settingsBill.setCallCost(1.35)
         settingsBill.setSmsCost(0.85)
@@ -65,7 +65,7 @@ describe('use values', function() {
         assert.equal(0.00, settingsBill.getTotalSmsCost())
     })
     it("Should be able to send 2 sms's at R0.85 each  ", function() {
-        let settingsBill = BillWithSettings();
+        let settingsBill = settingsBill1();
 
 
         settingsBill.setSmsCost(0.85)
@@ -81,7 +81,7 @@ describe('use values', function() {
 
 describe('warning & critical level', function() {
     it('Should return a class name of "warning "if warning level is reached', function() {
-        let settingsBill = BillWithSettings()
+        let settingsBill = settingsBill1()
 
         settingsBill.setCallCost(1.35)
         settingsBill.setSmsCost(0.85)
@@ -95,7 +95,7 @@ describe('warning & critical level', function() {
         assert.equal('warning', settingsBill.totalClassName())
     })
     it('Should return a class name of "critical" if critical level is reached', function() {
-        let settingsBill = BillWithSettings()
+        let settingsBill = settingsBill1()
 
         settingsBill.setCallCost(2.50)
         settingsBill.setSmsCost(0.85)

@@ -15,5 +15,8 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "express-handlebars": "^5.3.3"
+  },
+  "devDependencies": {
+    "mocha": "^9.0.3"
   }
 }

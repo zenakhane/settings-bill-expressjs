@@ -27,9 +27,10 @@ app.use(bodyParser.json())
 app.get('/', function(req, res) {
     res.render("index", {
         settings: settingsBill.getSettings(),
-        totals: settingsBill.totals()
+        totals: settingsBill.totals(),
+        color: settingsBill.changeColor()
     })
-});
+});  
 
 app.post('/settings', function(req, res) {
  
@@ -56,7 +57,7 @@ app.get('/actions', function(req, res) {
 
 });
 
-app.get('/actions/:type', function(req, res) {
+app.get('/actions/:actionType', function(req, res) {
     const actionType = req.params.actionType
     res.render('actions', {actions: settingsBill.actionsFor(actionType)})
 });

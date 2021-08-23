@@ -35,12 +35,13 @@ module.exports = function SettingsBill() {
             else if (action === 'call') {
                 cost = callCost;
             }
-
-            actionList.push({
-                type: action,
-                cost,
-                timestamp: new Date()
-            });
+            if (cost > 0) {
+                actionList.push({
+                    type: action,
+                    cost,
+                    timestamp: new Date()
+                });
+            }
         }
     }
 

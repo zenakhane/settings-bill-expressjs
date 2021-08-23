@@ -54,7 +54,7 @@ app.post('/action', function(req, res) {
 
 
 app.get('/actions', function(req, res) {
-    res.render('actions', {actions: settingsBill.actionsFor()})
+    res.render('actions', {actions: settingsBill.actions()})
 
 });
 

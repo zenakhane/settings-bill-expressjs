@@ -1,7 +1,10 @@
+// var PORT = process.env.PORT || 3012
 const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser')
 const SettingsBill = require("./settings-bill")
+const moment = require("moment")
+moment().format()
 const app = express()
 
 const settingsBill = SettingsBill()
@@ -27,9 +30,10 @@ app.use(bodyParser.json())
 app.get('/', function(req, res) {
     res.render("index", {
         settings: settingsBill.getSettings(),
-        totals: settingsBill.totals()
+        totals: settingsBill.totals(),
+        color: settingsBill.changeColor()
     })
-});
+});  
 
 app.post('/settings', function(req, res) {
  
@@ -52,16 +56,24 @@ app.post('/action', function(req, res) {
 
 
 app.get('/actions', function(req, res) {
-    res.render('actions', {actions: settingsBill.actionsFor()})
+
+    var actionsList = settingsBill.actions()
+    actionsList.forEach(element => {
+        element.currentTime = moment(element.timestamp).fromNow()
+    });
+    res.render('actions', {actions: actionsList})
 
 });
 
-app.get('/actions/:type', function(req, res) {
-    const actionType = req.params.actionType
-    res.render('actions', {actions: settingsBill.actionsFor(actionType)})
+app.get('/actions/:actionType', function(req, res) {
+    var actionsList = settingsBill.actions()
+    actionsList.forEach(element => {
+        element.currentTime = moment(element.timestamp).fromNow()
+    });
+    res.render('actions', {actions: actionsList})
 });
 
-const PORT = process.env.PORT || 3012
+const PORT = process.env.PORT || 3013
 app.listen(PORT, function() {
     console.log("App started at port:", PORT)
 });

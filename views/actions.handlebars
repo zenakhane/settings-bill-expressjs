@@ -1,5 +1,5 @@
 <div class="row">
-    <h1>actions</h1>
+    <h1>Actions</h1>
 
 <table>
     <tr>
@@ -7,11 +7,11 @@
         <th>Price</th>
         <th>When</th>
     </tr>
-    {{each actions}}
+    {{#each actions}}
     <tr>
         <td>{{type}}</td>
         <td>{{cost}}</td>
-        <td>{{timestamp}}</td>
+        <td>{{currentTime}}</td>
     </tr>
     {{/each}}
 </table>
